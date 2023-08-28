@@ -1,5 +1,6 @@
 class CollegesController < ApplicationController
-  before_action :find_by_id,only: [:show,:update,:destroy]
+  before_action :check_college_exists,only: [:show,:update,:destroy]
+ 
   def index
     college=College.all
     render json: college
@@ -32,7 +33,7 @@ class CollegesController < ApplicationController
     params.permit(:college_name)
   end
   
-  def find_by_id
+  def check_college_exists
     begin
       @college=College.find(params[:id])
     rescue
