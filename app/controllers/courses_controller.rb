@@ -2,11 +2,8 @@ class CoursesController < ApplicationController
   before_action :check_course_exists, only: [:show, :destroy, :update]
   
   def index
-    # @course=Course.all
-    # render json: @course
-    courses= Course.joins(:college)
-    all_courses = courses.group_by{|clg| clg.college.college_name}
-    render json: all_courses
+    courses=Course.all
+    render json: courses
   end
   
   def show

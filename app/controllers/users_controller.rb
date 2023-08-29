@@ -53,7 +53,8 @@ class UsersController < ApplicationController
   end
 
   def current_user_course
-    user_course = Course.includes(:users).find_by(users: {id: params[:id]})
+    user=User.find(params[:user_id])
+    user_course=user.course
     render json: user_course
   end
 end
